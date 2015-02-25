@@ -11,7 +11,15 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
+Route::get('/', ['uses'=>'HomeController@index']);
+Route::get('/login', ['uses'=>'HomeController@index']);
+Route::post('/login', ['uses'=>'HomeController@login']);
+Route::get('/logout', 'HomeController@logOut');
+
+/*Rutas privadas solo para usuarios autenticados*/
+Route::group(['before' => 'auth'], function(){
+    Route::get('/', 'HomeController@index');
+
+    Route::resource('users', 'UsersController');
+    Route::resource('ordens', 'OrdensController');
 });

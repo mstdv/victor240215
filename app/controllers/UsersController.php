@@ -10,7 +10,7 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		return View::make('users.index');
 	}
 
 	/**
@@ -32,7 +32,28 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+        $rules = array(
+            'usuario'     => 'required|unique:users',
+            'password'  => 'required|min:3'
+        );
+
+        $data = Input::all();
+
+        $validator = Validator::make($data, $rules);
+
+        if ($validator->passes())
+        {
+            $user = new User;
+
+            $user->usuario = Input::get('usuario');
+            $user->password = Hash::make(Input::get('password'));
+
+            $user->save();
+
+            return Redirect::back()->with('error_message', 'Datos guardados correctamente');
+        } else {
+            return Redirect::back()->with('error_message', 'Invalid data');
+        }
 	}
 
 	/**
@@ -68,7 +89,29 @@ class UsersController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        $rules = array(
+            'usuario'     => 'required|unique:users',
+            'password'  => 'required|min:3'
+        );
+
+        $data = Input::all();
+
+        $validator = Validator::make($data, $rules);
+
+        if ($validator->passes())
+        {
+            $user = User::find($id);
+
+            $user->usuario = Input::get('usuario');
+            $user->password = Hash::make(Input::get('password'));
+
+            $user->save();
+
+            return Redirect::back()->with('error_message'.$id, 'Datos guardados correctamente');
+        } else {
+            return Redirect::back()->with('error_message'.$id, 'Invalid data');
+        }
+
 	}
 
 	/**
@@ -80,7 +123,9 @@ class UsersController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+        $user = User::find($id);
+        $user->delete();
+        return Redirect::back();
 	}
 
 }
