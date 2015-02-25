@@ -15,6 +15,18 @@ class CreateOrdensTable extends Migration {
 		Schema::create('ordens', function(Blueprint $table)
 		{
 			$table->increments('id');
+            $table->string('cod_departamento');
+            $table->string('departamento');
+            $table->string('quien_reporta');
+            $table->string('ficha_trabajador');
+            $table->string('correo');
+            $table->string('telefono');
+            $table->string('marca');
+            $table->string('tipo_equipo');
+            $table->string('modelo');
+            $table->string('servicio');
+            $table->string('problema');
+            $table->string('observaciones');
 			$table->timestamps();
 		});
 	}

@@ -156,11 +156,10 @@ ul.nav a { zoom: 1; }  /* la propiedad de zoom da a IE el desencadenante hasLayo
         <li>
           <a href="{{URL::to('/')}}">Inicio</a>
         </li>
-        <li><a class="MenuBarItemSubmenu" href="#">Órdenes de Reparación</a>
+        <li><a class="MenuBarItemSubmenu" href="{{URL::to('/ordens/showall')}}">Órdenes de Reparación</a>
           <ul>
-            <li><a href="../sitio2.php">Ver &Oacute;rdenes de Reparaci&oacute;n</a> </li>
-            <li><a href="../sitio3.php">Ingresar Modificar/&Oacute;rden</a></li>
-            <li><a href="../sitio4.php">Informe T&eacute;cnico</a></li>
+            <li><a href="{{URL::to('/ordens/create')}}">Aperturar &Oacute;rdenes de Reparaci&oacute;n</a> </li>
+            <li><a href="{{URL::to('/ordens/showall')}}">Informe T&eacute;cnico</a></li>
           </ul>
         </li>
         <li><a href="{{URL::to('/users')}}">Usuarios</a></li>

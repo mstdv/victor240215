@@ -22,4 +22,6 @@ Route::group(['before' => 'auth'], function(){
 
     Route::resource('users', 'UsersController');
     Route::resource('ordens', 'OrdensController');
+    Route::get('/ordens/showall', ['uses'=>'OrdensController@showall']);
+    Route::get('/ordens/printrepor/{id}', ['uses'=>'OrdensController@printrepor']);
 });
