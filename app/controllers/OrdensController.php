@@ -107,7 +107,10 @@ class OrdensController extends \BaseController {
 
     public function printrepor($id)
     {
-        $html = View::make('ordens.pdf');
+        $orden = Orden::where('id', $id)->get();
+        $orden = $orden[0];
+
+        $html = View::make('ordens.pdf', ['orden'=>$orden]);
         return PDF::load($html, 'A4', 'portrait')->show('PDF');
     }
 
